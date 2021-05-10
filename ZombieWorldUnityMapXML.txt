@@ -6313,8 +6313,8 @@
         <LifeStart value="25"/>
         <LifeMax value="25"/>
         <LifeRegenDelay value="1"/>
-        <LifeRegenRate value="1"/>
-        <Speed value="2.5"/>
+        <LifeRegenRate value="50"/>
+        <Speed value="160"/>
         <SpeedMultiplierCreep value="0.5"/>
         <AttackSpeedMultiplierCreep value="0.5"/>
         <StationaryTurningRate value="2879.8242"/>
@@ -6409,6 +6409,8 @@
             <LayoutButtons Face="Block" Type="Passive" Row="1" Column="4"/>
             <LayoutButtons Face="EvolveintoCorporalMarine" Type="AbilCmd" AbilCmd="UpgradetoCorporalMarine,Execute" Row="1" Column="2"/>
         </CardLayouts>
+        <LifeRegenRate value="1"/>
+        <Speed value="2.5"/>
     </CUnit>
     <CUnit id="Medic">
         <AttackTargetPriority value="2"/>
@@ -7992,6 +7994,7 @@
             <LayoutButtons Face="Block" Type="Passive" Row="1" Column="4"/>
             <LayoutButtons Face="EvolveintoSergeantMajorMarine" Type="AbilCmd" AbilCmd="UpgradetoSergeantMajorMarine,Execute" Row="1" Column="2"/>
         </CardLayouts>
+        <LifeRegenRate value="1"/>
     </CUnit>
     <CUnit id="SergeantMajorMarine" parent="Marine">
         <Name value="Unit/Name/SergeantMajorMarine"/>
@@ -8007,6 +8010,7 @@
             <LayoutButtons Face="Block" Type="Passive" Row="1" Column="4"/>
             <LayoutButtons Face="EvolveintoMarineHeroS1" Type="AbilCmd" AbilCmd="UpgradetoMarineHero1,Execute" Row="1" Column="2"/>
         </CardLayouts>
+        <LifeRegenRate value="1"/>
     </CUnit>
     <CUnit id="SiegeTank">
         <LifeStart value="25"/>

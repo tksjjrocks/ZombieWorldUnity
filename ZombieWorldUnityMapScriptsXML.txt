@@ -1672,7 +1672,7 @@ trigger gt_Upgrade6Search;
 trigger gt_Upgrade7Search;
 trigger gt_UnitEntersRegionForShop;
 trigger gt_UnitLeavesRegionForShop;
-trigger gt_UnitBuysUpgrade1;
+trigger gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination;
 trigger gt_UnitBuysUpgrade2;
 trigger gt_UnitBuysUpgrade3;
 trigger gt_UnitBuysUpgrade4;
@@ -1834,6 +1834,7 @@ trigger gt_UnlockCreate8;
 trigger gt_ActivateUnlock8;
 trigger gt_DreadLord;
 trigger gt_Intoduction;
+trigger gt_UnitBuysUpgrade1;
 trigger gt_TruckDies;
 trigger gt_SpawnMiniZombie;
 trigger gt_TeleportTruckIntoMapTop;
@@ -2357,7 +2358,6 @@ trigger gt_Wave95RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexA
 trigger gt_Wave100InfestedSiegeTanks;
 trigger gt_Wave105RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTank;
 trigger gt_Wave110Abomination;
-trigger gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination;
 trigger gt_Wave120Tiger;
 trigger gt_Wave125RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbominationLurker;
 trigger gt_wave249Leviathan;
@@ -9703,13 +9703,21 @@ void gt_UnitLeavesRegionForShop_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: UnitBuysUpgrade1
+// Trigger: Wave115-RandomZombies+Zerglings+Ultralisk+Queen+Baneling+Hydralisk+Roach+T-Rex+Abberation+Mutalisk+InfestedTank+Abomination
 //--------------------------------------------------------------------------------------------------
-bool gt_UnitBuysUpgrade1_Func (bool testConds, bool runActions) {
+bool gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    const int auto625CE4E2_ae = 6;
+    int auto625CE4E2_var;
+    const int autoCA6585B2_ae = 300;
+    int autoCA6585B2_var;
+    unitgroup auto4672AD8F_g;
+    int auto4672AD8F_u;
+    unit auto4672AD8F_var;
+
     // Conditions
     if (testConds) {
-        if (!((UnitGetOwner(EventUnit()) != 9))) {
+        if (!((gv_wave == 140))) {
             return false;
         }
     }
@@ -9719,15 +9727,73 @@ bool gt_UnitBuysUpgrade1_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UnitBehaviorAdd(gv_playerInfo[UnitGetOwner(EventUnit())].lv_hero, "ShopUpgrade1", UnitFromId(1637809687), 1);
-    gv_upgrade1Count[UnitGetOwner(EventUnit())] += 1;
+    TriggerEnable(gt_ZombieTKSWavesSpeedling, false);
+    gv_wave = 550;
+    while (!((UnitGroupCount(UnitGroup(null, 9, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterSummoned - 32))), 0), c_unitCountAlive) < 65))) {
+        Wait(1.0, c_timeGame);
+    }
+    auto625CE4E2_var = 1;
+    for ( ; auto625CE4E2_var <= auto625CE4E2_ae; auto625CE4E2_var += 1 ) {
+        if ((PlayerGetPropertyInt(auto625CE4E2_var, c_playerPropCustom) < 54000)) {
+            AIAttackWaveSend(2, 180, true);
+            PlayerModifyPropertyInt(auto625CE4E2_var, c_playerPropCustom, c_playerPropOperAdd, 2);
+        }
+
+    }
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, StringExternal("Param/Value/08704070"));
+    UIClearMessages(PlayerGroupAll(), c_messageAreaDirective);
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "PrimalZergling", 0, 9, PointFromId(1330477819));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "PrimalZergling", 0, 9, PointFromId(1443602122));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "PrimalZergling", 0, 9, PointFromId(1886480028));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "PrimalRoach", 0, 9, PointFromId(1330477819));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "InfestedSiegeBreaker", 0, 9, PointFromId(1330477819));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "PrimalRoach", 0, 9, PointFromId(1727458775));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "Mutalisk", 0, 9, PointFromId(1443602122));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "Abomination", 0, 9, PointFromId(1443602122));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "Mutalisk", 0, 9, PointFromId(1886480028));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "Abomination", 0, 9, PointFromId(1886480028));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "InfestedSiegeBreaker", 0, 9, PointFromId(1886480028));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "Baneling", 0, 9, PointFromId(1727458775));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "Baneling", 0, 9, PointFromId(252796511));
+    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "Baneling", 0, 9, PointFromId(195972330));
+    libNtve_gf_CreateUnitsWithDefaultFacing(gv_tKSZombieAmountIncrease, "Hydralisk", 0, 9, PointFromId(252796511));
+    libNtve_gf_CreateUnitsWithDefaultFacing(gv_tKSZombieAmountIncrease, "Hydralisk", 0, 9, PointFromId(195972330));
+    libNtve_gf_CreateUnitsWithDefaultFacing(gv_tKSZombieAmountIncrease, "Hydralisk", 0, 9, PointFromId(1443602122));
+    libNtve_gf_CreateUnitsWithDefaultFacing(gv_tKSZombieAmountIncrease, "Hydralisk", 0, 9, PointFromId(1886480028));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PrimalUltralisk", 0, 9, PointFromId(1330477819));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PrimalUltralisk", 0, 9, PointFromId(1727458775));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PrimalUltralisk", 0, 9, PointFromId(252796511));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PrimalUltralisk", 0, 9, PointFromId(1443602122));
+    libNtve_gf_CreateUnitsWithDefaultFacing(2, "Queen", 0, 9, PointFromId(195972330));
+    libNtve_gf_CreateUnitsWithDefaultFacing(2, "Queen", 0, 9, PointFromId(1886480028));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Terrorzor", 0, 9, PointFromId(1727458775));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Terrorzor", 0, 9, PointFromId(1330477819));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedAbomination", 0, 9, PointFromId(252796511));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedAbomination", 0, 9, PointFromId(195972330));
+    autoCA6585B2_var = 1;
+    for ( ; autoCA6585B2_var <= autoCA6585B2_ae; autoCA6585B2_var += 1 ) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestorTerranBurrowed", 0, 9, PointFromName(("Point " + IntToString(autoCA6585B2_var))));
+        Wait(0.25, c_timeGame);
+        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, 55.0);
+        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLife, 55.0);
+        UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowInfestorTerranUp", 0)), c_orderQueueReplace);
+    }
+    Wait(0.25, c_timeGame);
+    auto4672AD8F_g = gv_zombies;
+    auto4672AD8F_u = UnitGroupCount(auto4672AD8F_g, c_unitCountAll);
+    for (;; auto4672AD8F_u -= 1) {
+        auto4672AD8F_var = UnitGroupUnitFromEnd(auto4672AD8F_g, auto4672AD8F_u);
+        if (auto4672AD8F_var == null) { break; }
+    }
+    TriggerEnable(gt_ZombieTKSWavesSpeedling, true);
+    TriggerEnable(TriggerGetCurrent(), false);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_UnitBuysUpgrade1_Init () {
-    gt_UnitBuysUpgrade1 = TriggerCreate("gt_UnitBuysUpgrade1_Func");
-    TriggerAddEventUnitAbility(gt_UnitBuysUpgrade1, null, AbilityCommand("ShopUpgrades", 0), c_unitAbilStageComplete, false);
+void gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination_Init () {
+    gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination = TriggerCreate("gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination_Func");
+    TriggerAddEventTimePeriodic(gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination, 5.0, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -18185,6 +18251,34 @@ bool gt_Intoduction_Func (bool testConds, bool runActions) {
 void gt_Intoduction_Init () {
     gt_Intoduction = TriggerCreate("gt_Intoduction_Func");
     TriggerAddEventTimeElapsed(gt_Intoduction, 12.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: UnitBuysUpgrade1
+//--------------------------------------------------------------------------------------------------
+bool gt_UnitBuysUpgrade1_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetOwner(EventUnit()) != 9))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(gv_playerInfo[UnitGetOwner(EventUnit())].lv_hero, "ShopUpgrade1", UnitFromId(1637809687), 1);
+    gv_upgrade1Count[UnitGetOwner(EventUnit())] += 1;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_UnitBuysUpgrade1_Init () {
+    gt_UnitBuysUpgrade1 = TriggerCreate("gt_UnitBuysUpgrade1_Func");
+    TriggerAddEventUnitAbility(gt_UnitBuysUpgrade1, null, AbilityCommand("ShopUpgrades", 0), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -47912,99 +48006,6 @@ void gt_Wave110Abomination_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Wave115-RandomZombies+Zerglings+Ultralisk+Queen+Baneling+Hydralisk+Roach+T-Rex+Abberation+Mutalisk+InfestedTank+Abomination
-//--------------------------------------------------------------------------------------------------
-bool gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    const int auto625CE4E2_ae = 6;
-    int auto625CE4E2_var;
-    const int autoCA6585B2_ae = 300;
-    int autoCA6585B2_var;
-    unitgroup auto4672AD8F_g;
-    int auto4672AD8F_u;
-    unit auto4672AD8F_var;
-
-    // Conditions
-    if (testConds) {
-        if (!((gv_wave == 140))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(gt_ZombieTKSWavesSpeedling, false);
-    gv_wave = 141;
-    while (!((UnitGroupCount(UnitGroup(null, 9, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterSummoned - 32))), 0), c_unitCountAlive) < 65))) {
-        Wait(1.0, c_timeGame);
-    }
-    auto625CE4E2_var = 1;
-    for ( ; auto625CE4E2_var <= auto625CE4E2_ae; auto625CE4E2_var += 1 ) {
-        if ((PlayerGetPropertyInt(auto625CE4E2_var, c_playerPropCustom) < 45000)) {
-            PlayerModifyPropertyInt(auto625CE4E2_var, c_playerPropCustom, c_playerPropOperAdd, 1);
-        }
-
-    }
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, StringExternal("Param/Value/08704070"));
-    UIClearMessages(PlayerGroupAll(), c_messageAreaDirective);
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "PrimalZergling", 0, 9, PointFromId(1330477819));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "PrimalZergling", 0, 9, PointFromId(1443602122));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "PrimalZergling", 0, 9, PointFromId(1886480028));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "PrimalRoach", 0, 9, PointFromId(1330477819));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "InfestedSiegeBreaker", 0, 9, PointFromId(1330477819));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "PrimalRoach", 0, 9, PointFromId(1727458775));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "Mutalisk", 0, 9, PointFromId(1443602122));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "Abomination", 0, 9, PointFromId(1443602122));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "Mutalisk", 0, 9, PointFromId(1886480028));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "Abomination", 0, 9, PointFromId(1886480028));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 1), "InfestedSiegeBreaker", 0, 9, PointFromId(1886480028));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "Baneling", 0, 9, PointFromId(1727458775));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "Baneling", 0, 9, PointFromId(252796511));
-    libNtve_gf_CreateUnitsWithDefaultFacing((gv_tKSZombieAmountIncrease * 2), "Baneling", 0, 9, PointFromId(195972330));
-    libNtve_gf_CreateUnitsWithDefaultFacing(gv_tKSZombieAmountIncrease, "Hydralisk", 0, 9, PointFromId(252796511));
-    libNtve_gf_CreateUnitsWithDefaultFacing(gv_tKSZombieAmountIncrease, "Hydralisk", 0, 9, PointFromId(195972330));
-    libNtve_gf_CreateUnitsWithDefaultFacing(gv_tKSZombieAmountIncrease, "Hydralisk", 0, 9, PointFromId(1443602122));
-    libNtve_gf_CreateUnitsWithDefaultFacing(gv_tKSZombieAmountIncrease, "Hydralisk", 0, 9, PointFromId(1886480028));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PrimalUltralisk", 0, 9, PointFromId(1330477819));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PrimalUltralisk", 0, 9, PointFromId(1727458775));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PrimalUltralisk", 0, 9, PointFromId(252796511));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PrimalUltralisk", 0, 9, PointFromId(1443602122));
-    libNtve_gf_CreateUnitsWithDefaultFacing(2, "Queen", 0, 9, PointFromId(195972330));
-    libNtve_gf_CreateUnitsWithDefaultFacing(2, "Queen", 0, 9, PointFromId(1886480028));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Terrorzor", 0, 9, PointFromId(1727458775));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Terrorzor", 0, 9, PointFromId(1330477819));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedAbomination", 0, 9, PointFromId(252796511));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedAbomination", 0, 9, PointFromId(195972330));
-    autoCA6585B2_var = 1;
-    for ( ; autoCA6585B2_var <= autoCA6585B2_ae; autoCA6585B2_var += 1 ) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestorTerranBurrowed", 0, 9, PointFromName(("Point " + IntToString(autoCA6585B2_var))));
-        Wait(0.25, c_timeGame);
-        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, 55.0);
-        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLife, 55.0);
-        UnitIssueOrder(UnitLastCreated(), Order(AbilityCommand("BurrowInfestorTerranUp", 0)), c_orderQueueReplace);
-    }
-    Wait(0.25, c_timeGame);
-    auto4672AD8F_g = gv_zombies;
-    auto4672AD8F_u = UnitGroupCount(auto4672AD8F_g, c_unitCountAll);
-    for (;; auto4672AD8F_u -= 1) {
-        auto4672AD8F_var = UnitGroupUnitFromEnd(auto4672AD8F_g, auto4672AD8F_u);
-        if (auto4672AD8F_var == null) { break; }
-    }
-    TriggerEnable(gt_ZombieTKSWavesSpeedling, true);
-    TriggerEnable(TriggerGetCurrent(), false);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination_Init () {
-    gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination = TriggerCreate("gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination_Func");
-    TriggerAddEventTimePeriodic(gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination, 5.0, c_timeGame);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Wave120-Tiger
 //--------------------------------------------------------------------------------------------------
 bool gt_Wave120Tiger_Func (bool testConds, bool runActions) {
@@ -53989,7 +53990,7 @@ void InitTriggers () {
     gt_Upgrade7Search_Init();
     gt_UnitEntersRegionForShop_Init();
     gt_UnitLeavesRegionForShop_Init();
-    gt_UnitBuysUpgrade1_Init();
+    gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination_Init();
     gt_UnitBuysUpgrade2_Init();
     gt_UnitBuysUpgrade3_Init();
     gt_UnitBuysUpgrade4_Init();
@@ -54151,6 +54152,7 @@ void InitTriggers () {
     gt_ActivateUnlock8_Init();
     gt_DreadLord_Init();
     gt_Intoduction_Init();
+    gt_UnitBuysUpgrade1_Init();
     gt_TruckDies_Init();
     gt_SpawnMiniZombie_Init();
     gt_TeleportTruckIntoMapTop_Init();
@@ -54674,7 +54676,6 @@ void InitTriggers () {
     gt_Wave100InfestedSiegeTanks_Init();
     gt_Wave105RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTank_Init();
     gt_Wave110Abomination_Init();
-    gt_Wave115RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbomination_Init();
     gt_Wave120Tiger_Init();
     gt_Wave125RandomZombiesZerglingsUltraliskQueenBanelingHydraliskRoachTRexAbberationMutaliskInfestedTankAbominationLurker_Init();
     gt_wave249Leviathan_Init();
