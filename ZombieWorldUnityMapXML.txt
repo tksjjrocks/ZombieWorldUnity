@@ -6310,8 +6310,8 @@
     </CUnit>
     <CUnit id="Marine">
         <Attributes index="Heroic" value="1"/>
-        <LifeStart value="5000"/>
-        <LifeMax value="5000"/>
+        <LifeStart value="25"/>
+        <LifeMax value="25"/>
         <LifeRegenDelay value="1"/>
         <LifeRegenRate value="1"/>
         <Speed value="2.5"/>
@@ -6409,8 +6409,6 @@
             <LayoutButtons Face="Block" Type="Passive" Row="1" Column="4"/>
             <LayoutButtons Face="EvolveintoCorporalMarine" Type="AbilCmd" AbilCmd="UpgradetoCorporalMarine,Execute" Row="1" Column="2"/>
         </CardLayouts>
-        <LifeStart value="25"/>
-        <LifeMax value="25"/>
     </CUnit>
     <CUnit id="Medic">
         <AttackTargetPriority value="2"/>
